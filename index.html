@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Zone | Business & Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        courtOrange: '#F37021',
+                        deepBlue: '#0A2342',
+                        leatherBrown: '#8B4513',
+                        black: '#F8F9FA',
+                        successGreen: '#166534',
+                        lightGray: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sports: ['Bebas Neue', 'sans-serif'],
+                        body: ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .ball-shadow {
+                filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
+            }
+            .court-bg {
+                background: linear-gradient(white);
+            }
+            .light-court-bg {
+                background: linear-gradient(lightblue);
+            }
+            .bounce {
+                animation: bounce 2s infinite ease-in-out;
+            }
+            .spin {
+                animation: spin 8s linear infinite;
+            }
+            .fade-in {
+                animation: fadeIn 1.2s ease-out forwards;
+            }
+            .slide-up {
+                animation: slideUp 1s ease-out forwards;
+            }
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+            }
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes slideUp {
+                from { opacity: 0; transform: translateY(40px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .hover-scale {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.03);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            }
+            .service-card {
+                transition: all 0.3s ease;
+            }
+            .service-card:hover {
+                border-color: #F37021;
+                background: #FFF8F2;
+            }
+            .profile-img {
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 5px solid #F37021;
+                box-shadow: 0 0 20px rgba(243, 112, 33, 0.4);
+            }
+            .video-container {
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                height: 0;
+                overflow: hidden;
+                border-radius: 12px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                background: #000;
+            }
+            .video-container iframe,
+            .video-container video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F37021;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d65a14;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-body">
+    <!-- Navigation Bar -->
+    <nav class="bg-deepBlue text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://cdn-icons-png.flaticon.com/512/1041/1041184.png" alt="Basketball Logo" class="w-10 h-10 spin">
+                <h1 class="text-2xl md:text-3xl font-sports tracking-wider">BASKETBALL ZONE</h1>
+            </div>
+            <div class="hidden md:flex space-x-8 font-semibold">
+                <a href="#home" class="hover:text-courtOrange transition-colors duration-300">Home</a>
+                <a href="#profile" class="hover:text-courtOrange transition-colors duration-300">Our Profile</a>
+                <a href="#services" class="hover:text-courtOrange transition-colors duration-300">Services</a>
+                <a href="#future" class="hover:text-courtOrange transition-colors duration-300">Future Plans</a>
+                <a href="#media" class="hover:text-courtOrange transition-colors duration-300">Videos</a>
+                <a href="#gallery" class="hover:text-courtOrange transition-colors duration-300">Gallery</a>
+                <a href="#contact" class="hover:text-courtOrange transition-colors duration-300">Contact</a>
+            </div>
+            <button id="menuBtn" class="md:hidden text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-deepBlue md:hidden">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="hover:text-courtOrange transition-colors duration-300">Home</a>
+                <a href="#profile" class="hover:text-courtOrange transition-colors duration-300">Our Profile</a>
+                <a href="#services" class="hover:text-courtOrange transition-colors duration-300">Services</a>
+                <a href="#future" class="hover:text-courtOrange transition-colors duration-300">Future Plans</a>
+                <a href="#media" class="hover:text-courtOrange transition-colors duration-300">Videos</a>
+                <a href="#gallery" class="hover:text-courtOrange transition-colors duration-300">Gallery</a>
+                <a href="#contact" class="hover:text-courtOrange transition-colors duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="court-bg min-h-screen pt-24 flex flex-col md:flex-row items-center justify-center px-6">
+        <div class="w-full md:w-1/2 text-center md:text-left fade-in">
+            <h2 class="text-[clamp(2.5rem,5vw,4rem)] font-sports text-netWhite leading-tight">
+                BUILDING THE FUTURE OF <span class="text-courtOrange">BASKETBALL</span>
+            </h2>
+            <p class="text-netWhite text-lg md:text-xl my-6 max-w-xl mx-auto md:mx-0">
+                More than a game — we are creating a complete ecosystem for players, fans, and communities. Discover our story, services, and vision.
+            </p>
+            <div class="space-x-4">
+                <button onclick="scrollToSection('profile')" class="bg-courtOrange hover:bg-leatherBrown text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
+                    View Profile
+                </button>
+                <button onclick="scrollToSection('media')" class="bg-white text-deepBlue font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:scale-105">
+                    Watch Videos
+                </button>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
+            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Basketball Action" class="w-full max-w-lg rounded-2xl shadow-2xl hover-scale">
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-sports text-deepBlue mb-8">About Us / Profile</h2>
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-2xl shadow-xl p-8 flex flex-col md:flex-row items-center gap-8">
+                <div class="flex-shrink-0">
+                    <img src="egg/FE.jfif" alt="Profile Picture" class="profile-img hover-scale">
+                    <p class="mt-4 text-xl font-bold text-deepBlue">MJ P POTENCIOSO</p>
+                    <p class="text-courtOrange font-semibold"> Head Coach</p>
+                </div>
+                <div class="text-left">
+                    <h3 class="text-2xl font-bold text-deepBlue mb-4">Our Story</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Basketball Zone was founded in 2024 in Davao City, Philippines, with one simple goal: to make basketball accessible, professional, and inspiring for everyone. Starting with small training sessions, we have grown into a trusted sports organization focused on skill development, teamwork, and community building.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        We believe that basketball teaches discipline, leadership, and resilience — values that help players succeed both on and off the court. Our team consists of certified coaches, sports managers, and passionate supporters working together to grow the game in the Philippines.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div><span class="font-semibold text-deepBlue">📍 Location:</span> Davao City, Philippines</div>
+                        <div><span class="font-semibold text-deepBlue">📅 Established:</span> 2024</div>
+                        <div><span class="font-semibold text-deepBlue">🎯 Mission:</span> Develop players & build communities</div>
+                        <div><span class="font-semibold text-deepBlue">👥 Team Size:</span> 15+ Staff & Coaches</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-sports text-center text-deepBlue mb-4">Our Current Services</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">What we offer today to help players and communities grow</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card border border-gray-200 rounded-xl p-6 shadow-md hover-scale">
+                    <i class="fa fa-basketball-ball text-courtOrange text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-deepBlue mb-3">Training & Clinics</h3>
+                    <p class="text-gray-700 mb-4">Professional coaching for kids, youth, and adults. Focus on fundamentals, fitness, and game strategy.</p>
+                    <span class="text-sm text-gray-500">Available now</span>
+                </div>
+                <div class="service-card border border-gray-200 rounded-xl p-6 shadow-md hover-scale">
+                    <i class="fa fa-calendar-check-o text-courtOrange text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-deepBlue mb-3">League & Tournaments</h3>
+                    <p class="text-gray-700 mb-4">Organized local leagues, friendly matches, and competitive tournaments for all skill levels.</p>
+                    <span class="text-sm text-gray-500">Available now</span>
+                </div>
+                <div class="service-card border border-gray-200 rounded-xl p-6 shadow-md hover-scale">
+                    <i class="fa fa-shopping-cart text-courtOrange text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-deepBlue mb-3">Equipment & Merchandise</h3>
+                    <p class="text-gray-700 mb-4">High-quality basketballs, jerseys, shoes, and accessories at fair prices.</p>
+                    <span class="text-sm text-gray-500">Available now</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Business & Plans Section -->
+    <section id="future" class="py-16 light-court-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-sports text-center text-deepBlue mb-4">Future Business & Vision</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Where we are expanding — building a sustainable, growing basketball brand</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="bg-white rounded-2xl shadow-xl p-8 slide-up">
+                    <h3 class="text-3xl font-bold text-courtOrange mb-6">📈 Business Expansion Plan</h3>
+                    <ul class="space-y-5 text-gray-700 text-lg">
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-successGreen text-2xl mr-3 mt-1"></i>
+                            <div><strong>Multi-Center Facilities:</strong> Build full-size indoor courts, gyms, and training hubs across major cities in the Philippines.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-successGreen text-2xl mr-3 mt-1"></i>
+                            <div><strong>Academy & Development Program:</strong> Create a structured youth academy to discover and develop future professional players.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-successGreen text-2xl mr-3 mt-1"></i>
+                            <div><strong>Digital Platform:</strong> Launch an online portal for bookings, live scores, coaching content, and e-commerce store.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-successGreen text-2xl mr-3 mt-1"></i>
+                            <div><strong>Partnerships & Sponsorships:</strong> Collaborate with schools, corporations, and sports brands to expand reach and funding.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-successGreen text-2xl mr-3 mt-1"></i>
+                            <div><strong>International Exposure:</strong> Organize youth exchanges, friendly matches, and exposure trips to global leagues.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl p-8 slide-up">
+                    <h3 class="text-3xl font-bold text-courtOrange mb-6">🚀 Coming Soon Services</h3>
+                    <ul class="space-y-5 text-gray-700 text-lg">
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-courtOrange text-2xl mr-3 mt-1"></i>
+                            <div><strong>Sports Science & Fitness:</strong> Physical therapy, nutrition planning, and performance analysis for athletes.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-courtOrange text-2xl mr-3 mt-1"></i>
+                            <div><strong>Broadcasting & Media:</strong> Live streaming of tournaments, highlights, and sports news content.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-courtOrange text-2xl mr-3 mt-1"></i>
+                            <div><strong>Event Management:</strong> Hosting large-scale basketball events, charity games, and celebrity matches.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-courtOrange text-2xl mr-3 mt-1"></i>
+                            <div><strong>Community Outreach:</strong> Free clinics for underprivileged youth and school sports development support.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-courtOrange text-2xl mr-3 mt-1"></i>
+                            <div><strong>Franchise Opportunities:</strong> Allow qualified partners to open Basketball Zone branches in their regions.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-16 bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-center text-deepBlue mb-8">📅 3-Year Growth Roadmap</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="border-l-4 border-courtOrange pl-4 py-2">
+                        <h4 class="text-xl font-bold text-courtOrange">Year 1</h4>
+                        <p class="text-gray-700">Establish core operations, build customer base, and launch digital presence.</p>
+                    </div>
+                    <div class="border-l-4 border-courtOrange pl-4 py-2">
+                        <h4 class="text-xl font-bold text-courtOrange">Year 2</h4>
+                        <p class="text-gray-700">Open first full facility, expand leagues, and introduce merchandise line.</p>
+                    </div>
+                    <div class="border-l-4 border-courtOrange pl-4 py-2">
+                        <h4 class="text-xl font-bold text-courtOrange">Year 3+</h4>
+                        <p class="text-gray-700">Expand to multiple locations, launch academy programs, and start franchise model.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎥 Media & Videos Section - 4 Videos Added -->
+    <section id="media" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-sports text-center text-deepBlue mb-10">Media & Videos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Video 1: YouTube -->
+                <div class="hover-scale">
+                    <h3 class="text-xl font-bold text-deepBlue mb-3">Training Fundamentals</h3>
+                    <div class="video-container">
+                        <iframe src="egg/SA.mp4" title="Basketball Training" allowfullscreen></iframe>
+                    </div>
+                    <p class="mt-2 text-gray-600 text-sm">Learn basic skills and drills for all levels.</p>
+                </div>
+
+                <!-- Video 2: YouTube -->
+                <div class="hover-scale">
+                    <h3 class="text-xl font-bold text-deepBlue mb-3">Game Highlights</h3>
+                    <div class="video-container">
+                        <iframe src="egg/GA.mp4" title="Basketball Game Highlights" allowfullscreen></iframe>
+                    </div>
+                    <p class="mt-2 text-gray-600 text-sm">Watch exciting moments from our recent tournaments.</p>
+                </div>
+
+                <!-- Video 3: Local MP4 -->
+                <div class="hover-scale">
+                    <h3 class="text-xl font-bold text-deepBlue mb-3">Company Introduction</h3>
+                    <div class="video-container">
+                        <video controls poster="https://images.unsplash.com/photo-1574623452334-1e0d28013527?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                            <source src="egg/HA.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <p class="mt-2 text-gray-600 text-sm">Short introduction about Basketball Zone.</p>
+                </div>
+
+                <!-- Video 4: Local MP4 -->
+                <div class="hover-scale">
+                    <h3 class="text-xl font-bold text-deepBlue mb-3">Youth Development Program</h3>
+                    <div class="video-container">
+                        <video controls poster="https://images.unsplash.com/photo-1519861531473-9e4e227cf18c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                            <source src="egg/GE.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <p class="mt-2 text-gray-600 text-sm">See how we train and develop young players.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-sports text-center text-deepBlue mb-12">Basketball Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="egg/BE.jfif" alt="Basketball Court" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="p-4 bg-white">
+                        <h3 class="font-bold text-lg text-deepBlue">The Hardwood</h3>
+                        <p class="text-gray-600">Future home of our main facility</p>
+                    </div>
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="egg/HE.webp" alt="Shooting the Ball" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="p-4 bg-white">
+                        <h3 class="font-bold text-lg text-deepBlue">Training Excellence</h3>
+                        <p class="text-gray-600">Building skills for tomorrow</p>
+                    </div>
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="egg/G.jfif" alt="Basketball and Net" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="p-4 bg-white">
+                        <h3 class="font-bold text-lg text-deepBlue">Nothing But Net</h3>
+                        <p class="text-gray-600">Goal-oriented growth</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 court-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-sports mb-6">Get Involved</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-8">Interested in partnering, joining, or learning more about our plans? Reach out to us today.</p>
+            <div class="max-w-xl mx-auto bg-white text-gray-800 p-6 rounded-xl shadow-lg">
+                <p class="mb-3"><strong>📍 Location:</strong> Davao City, Davao del Sur, Philippines</p>
+                <p class="mb-3"><strong>📞 Phone:</strong> +63 917 123 4567</p>
+                <p class="mb-3"><strong>📧 Email:</strong> info@basketballzone.ph</p>
+                <p><strong>🌐 Website:</strong> www.basketballzone.ph</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-deepBlue text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg">&copy; 2026 Basketball Zone | Growing the game, building the future</p>
+            <div class="flex justify-center space-x-6 mt-4 text-2xl">
+                <i class="fa fa-facebook hover:text-courtOrange cursor-pointer transition-colors"></i>
+                <i class="fa fa-instagram hover:text-courtOrange cursor-pointer transition-colors"></i>
+                <i class="fa fa-twitter hover:text-courtOrange cursor-pointer transition-colors"></i>
+                <i class="fa fa-youtube-play hover:text-courtOrange cursor-pointer transition-colors"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            mobileMenu.classList.add('hidden');
+        }
+
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.slide-up').forEach(el => {
+                const pos = el.getBoundingClientRect().top;
+                const winH = window.innerHeight;
+                if (pos < winH - 100) el.style.opacity = '1', el.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
